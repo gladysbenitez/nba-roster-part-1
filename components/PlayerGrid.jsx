@@ -1,5 +1,6 @@
 //3rd Party Imports
-import React from 'react';
+import React from 'react'; 
+import Image from 'next/image';
 
 
 export function PlayerGrid(props) {  
@@ -13,7 +14,7 @@ export function PlayerGrid(props) {
         const {id,fn,ln,ta,num,pos,pts,reb,ast,headshot} = player  
       
       return(
-        <li className='max-w-sm max-w-sm rounded overflow-hidden shadow-lg m-3 ' id={id}> 
+        <li data-testid='player-grid' key={id} className='max-w-sm max-w-sm rounded overflow-hidden shadow-lg m-3 ' id={id}> 
             <div id={id} className='flex flex-col'>
               <section className='relative overflow-hidden'>
                 <div className='absolute w-8/12 opacity-5 --tw-translate-y: -35'>
@@ -25,7 +26,7 @@ export function PlayerGrid(props) {
                 <div className='flex'> 
                 <div className='block w-1/2 md:w-1/3'>  
                 <div className='relative w-19 min-w-0 mt-5 sm:w-20 md:w-24 lg:w-32'>
-                  <img className='flex w-10/12 mx-auto mt-16 md:mt-24' src={headshot}>
+                  <img alt={''} className='flex w-10/12 mx-auto mt-16 md:mt-24' src={headshot}>
                   </img>
                 </div> 
                 </div>
@@ -39,7 +40,7 @@ export function PlayerGrid(props) {
                   </div>
                 </div> 
                 <div className=' w-16 min-w-0 mt-5 sm:w-20 md:w-24 lg:w-32'>
-                <img  src={teams?.find((team)=>team.ta === ta).logo}></img>
+                <img alt={''} src={teams?.find((team)=>team.ta === ta).logo}></img>
                 </div>
                 </div> 
                 </div>

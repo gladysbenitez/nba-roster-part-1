@@ -1,4 +1,5 @@
 //3rd Party Imports
+import axios from 'axios';
 import React, {useState, useEffect} from 'react'; 
 
 //components
@@ -15,16 +16,14 @@ export function NavigationBar() {
   const [visiblePlayers,setVisiblePlayers]=useState([]);
 
   useEffect(() => { 
-   fetch('http://localhost:3001/players')
-    .then(response => response.json())
-    .then((data) => setPlayers(data))
+   axios.get('http://localhost:3001/players')
+    .then(({data}) => setPlayers(data))
    },[]) 
 
 
    useEffect(() => {
-    fetch('http://localhost:3001/teams')
-      .then(response => response.json())
-      .then((json) => setTeams(json))
+    axios.get('http://localhost:3001/teams')
+      .then(({data}) => setTeams(data))
   },[])   
 
 
@@ -66,11 +65,11 @@ export function NavigationBar() {
           <h1 className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
           NBA Player Roster 
           </h1>  
-          <TeamsDropdown data-testid="teams-dropdown-menu" teams={teams} grabTeam={grabTeam}></TeamsDropdown>  
+          <TeamsDropdown teams={teams} grabTeam={grabTeam}></TeamsDropdown>  
           <SearchPlayer data-testid="search-bar" name={name} handleSubmit={handleSubmit} setName={setName}></SearchPlayer>
         </div> 
       </div>
-      <PlayerGrid data-testid="player-grid" players={players} visiblePlayers={visiblePlayers} teams={teams}></PlayerGrid> 
+      <PlayerGrid data-testid="player-grid" visiblePlayers={visiblePlayers} teams={teams}></PlayerGrid> 
     </div>
   )
 }

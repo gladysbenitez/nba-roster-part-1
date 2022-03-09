@@ -6,9 +6,11 @@ export function SearchPlayer(props) {
   const { handleSubmit, setName,name } = props;
 
   return (
-    <div>
-      <form className='container flex flex-wrap justify-between items-center' onSubmit={handleSubmit}>
+    <div >
+      <form data-testid="search-enter" className='container flex flex-wrap justify-between items-center' onSubmit={handleSubmit}>
         <input 
+         data-testid="search-bar"
+          aria-label="search-player"
           type="text"
           id="player"
           className="bg-gray-100 text-gray-900 block w-full pl-8 m-7  sm:text-sm border-gray-300 rounded-md"

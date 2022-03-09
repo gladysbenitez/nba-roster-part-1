@@ -10,7 +10,7 @@ import styles from '../styles/Card.styles'
 export default function Home() { 
   return (
   <div>
-    <NavigationBar  ></NavigationBar>
+    <NavigationBar></NavigationBar>
    
   </div>
   )
