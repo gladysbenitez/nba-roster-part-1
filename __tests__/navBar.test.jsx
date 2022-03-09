@@ -61,14 +61,14 @@ describe('Navigation Bar', () => {
     expect(playerGrid).toBeInTheDocument
   })  
 
-  it('renders player when user types player name in search bar ',async () => { 
+  it('renders player when user types player name in search bar ', async () => { 
     const mockSubmit = jest.fn();
      render(<NavigationBar handleSubmit={mockSubmit}/>);
      const searchBar = screen.getByTestId('search-bar') 
       fireEvent.change(searchBar, {target: {value:'Precious Achiuwa'}}) 
-      const enter=  await screen.getByTestId('search-enter') 
+      const enter= await screen.getByTestId('search-enter') 
       fireEvent.submit(enter);
-      const playerGrid=  await screen.getByTestId('player-grid')
+      const playerGrid= await screen.getByTestId('player-grid')
       expect(playerGrid).toBeInTheDocument
       console.log(playerGrid,'hola')
     })
