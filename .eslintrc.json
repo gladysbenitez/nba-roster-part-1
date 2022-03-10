@@ -7,7 +7,9 @@
     {
       "files": [
         "**/__tests__/**/*.[jt]s?(x)",
-        "**/?(*.)+(spec|test).[jt]s?(x)"
+        "**/?(*.)+(spec|test).[jt]s?(x)",
+        // "**/__tests__/**/*.[t]s?(x)",
+        // "**/?(*.)+(spec|test).[t]s?(x)"
       ],
       "extends": ["plugin:testing-library/react"]
     }

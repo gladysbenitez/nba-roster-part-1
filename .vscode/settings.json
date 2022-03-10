@@ -3,6 +3,7 @@
     "Achiuwa",
     "headlessui",
     "headshot",
-    "heroicons"
+    "heroicons",
+    "testid"
   ]
 }

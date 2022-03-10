@@ -1,12 +1,18 @@
-import  React, { Fragment } from 'react';
+import  React, { Fragment, MouseEventHandler} from 'react';
 import { Menu, Transition } from '@headlessui/react';
 import { ChevronDownIcon } from '@heroicons/react/solid';
+import {Team} from './NavigationBar'; 
 
-function classNames(...classes) {
+function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
-export function TeamsDropdown(props) { 
+interface TeamProp {
+  teams: Team[],
+  grabTeam: MouseEventHandler<HTMLButtonElement>
+}
+
+export function TeamsDropdown(props: TeamProp) { 
   const { teams, grabTeam } = props;
 
   return(
@@ -31,7 +37,7 @@ export function TeamsDropdown(props) {
           <Menu.Items className=" origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
           <div  className="py-1">
             {teams && teams.map(team=> {
-            const {tid,name,ta} = team  
+            const {tid, name, ta} = team  
               return(
                 <Menu.Item key='tid'>
                   {({ active }) => (
@@ -39,7 +45,7 @@ export function TeamsDropdown(props) {
                       data-testid='menu-item'
                       value= {name}
                       onClick={grabTeam}
-                      id={tid}
+                      id={tid.toString()}
                       type="submit"
                       className={classNames(
                         active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',

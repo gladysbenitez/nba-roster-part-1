@@ -1,9 +1,13 @@
 //3rd Party Imports
 import React from 'react'; 
-import Image from 'next/image';
+import { Player, Team } from './NavigationBar';
+ 
+interface PlayerGridProps{
+  visiblePlayers:Player[], 
+  teams:Team[]
+}
 
-
-export function PlayerGrid(props) {  
+export function PlayerGrid(props:PlayerGridProps) {  
   const { visiblePlayers,teams } = props;
 
   return ( 
@@ -12,14 +16,15 @@ export function PlayerGrid(props) {
       {  
       visiblePlayers && visiblePlayers.map(player=> {
         const {id,fn,ln,ta,num,pos,pts,reb,ast,headshot} = player  
+        const team = teams.find((t) => t.ta === ta) || { logo: '' }
       
       return(
-        <li data-testid='player-grid' key={id} className='max-w-sm max-w-sm rounded overflow-hidden shadow-lg m-3 ' id={id}> 
-            <div id={id} className='flex flex-col'>
+        <li data-testid='player-grid' key={id} className='max-w-sm max-w-sm rounded overflow-hidden shadow-lg m-3 ' id={id.toString()}> 
+            <div id={id.toString()} className='flex flex-col'>
               <section className='relative overflow-hidden'>
                 <div className='absolute w-8/12 opacity-5 --tw-translate-y: -35'>
                   <div className='relative min-w-full'>
-                    <img className='max-w-full h-auto' src={teams?.find((team)=>team.ta === ta).logo}></img>                
+                    <img className='max-w-full h-auto' src={team.logo}></img>                
                   </div>
                 </div>
                 <div className='relative block mx-auto bg-transparent max-w-screen-xxl'> 
@@ -40,7 +45,7 @@ export function PlayerGrid(props) {
                   </div>
                 </div> 
                 <div className=' w-16 min-w-0 mt-5 sm:w-20 md:w-24 lg:w-32'>
-                <img alt={''} src={teams?.find((team)=>team.ta === ta).logo}></img>
+                <img alt={''} src={team.logo}></img>
                 </div>
                 </div> 
                 </div>

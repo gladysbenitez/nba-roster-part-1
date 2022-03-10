@@ -1,9 +1,7 @@
 import { render, screen,fireEvent } from '@testing-library/react' 
 import axios from "axios";
-
-import { NavigationBar } from '@/components/NavigationBar'
-import { SearchPlayer } from '@/components/SearchPlayer';
-
+import { FormEventHandler } from 'react';
+import {NavigationBar} from '../components/NavigationBar'
 
 jest.mock("axios");
 
@@ -28,12 +26,12 @@ describe('Navigation Bar', () => {
     "ta": "MIA",
     "city": "Miami",
     "name": "Heat",
-    "color": "#98002e",
+    "color": "#98002",
     "logo": "https://cdn.nba.com/logos/nba/1610612748/primary/L/logo.svg"
   }];
 
  beforeEach(()=>{
-  axios.get.mockImplementation((url)=>{ 
+  (axios.get as jest.Mock).mockImplementation((url:string)=>{ 
     
     if(url === `http://localhost:3001/players` ){
       return Promise.resolve({data:players})
@@ -61,7 +59,8 @@ describe('Navigation Bar', () => {
     expect(playerGrid).toBeInTheDocument
   })  
 
-  it('renders player when user types player name in search bar ', async () => { 
+  it('renders player when user types player name in search bar ', async () => {  
+
     const mockSubmit = jest.fn();
      render(<NavigationBar handleSubmit={mockSubmit}/>);
      const searchBar = screen.getByTestId('search-bar') 

@@ -1,13 +1,21 @@
 //3rd Party Imports
-import React from 'react';
+import React, {FormEventHandler} from 'react'; 
 
-export function SearchPlayer(props) { 
+
+interface SearchPlayerProps {
+  handleSubmit: FormEventHandler, 
+  setName: (name: string) => void, 
+  name:string
+}
+
+export function SearchPlayer(props:SearchPlayerProps) { 
 
   const { handleSubmit, setName,name } = props;
 
   return (
     <div >
-      <form data-testid="search-enter" className='container flex flex-wrap justify-between items-center' onSubmit={handleSubmit}>
+      <form data-testid="search-enter" className='container flex flex-wrap justify-between items-center'
+       onSubmit={handleSubmit}>
         <input 
          data-testid="search-bar"
           aria-label="search-player"
